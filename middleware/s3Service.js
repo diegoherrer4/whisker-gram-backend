@@ -4,8 +4,8 @@ dotenv.config();
 
 export const s3Uploadv2 = async (file) => {
   const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.MY_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.MY_AWS_SECRET_ACCESS_KEY,
   });
   const param = {
     Bucket: process.env.AWS_BUCKET_NAME,
