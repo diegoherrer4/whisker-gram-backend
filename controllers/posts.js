@@ -42,9 +42,9 @@ export const createPost = async (req, res) => {
 export const getFeedPosts = async (req, res) => {
   try {
     console.log("Received request to getFeedPosts");
-    const post = await Post.find();
-    console.log(`Posts: ${post}`);
-    res.status(200).json(post);
+    const posts = await Post.find().sort({ createdAt: -1 });
+    console.log(`Posts: ${posts}`);
+    res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({
       message:
@@ -54,16 +54,18 @@ export const getFeedPosts = async (req, res) => {
   }
 };
 
+
 export const getUserPosts = async (req, res) => {
   try {
     console.log("Get user posts api call");
     const { userId } = req.params;
-    const posts = await Post.find({ userId: userId });
+    const posts = await Post.find({ userId: userId }).sort({ createdAt: -1 });
     res.status(200).json(posts);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
+
 
 /* UPDATE */
 
